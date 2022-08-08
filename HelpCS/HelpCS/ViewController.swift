@@ -9,6 +9,16 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // 이름 입력창 -> 위치 변경 필요
+    lazy var nameTextField: UITextField = {
+        let nameText = UITextField()
+        //        nameText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
+        nameText.placeholder = "이름"
+        nameText.borderStyle = .roundedRect
+        nameText.clearButtonMode = .whileEditing   // 입력하기 위해서 clear한 btn상태
+        return nameText
+    }()
+    
     // 아이디 입력창 -> 위치 변경 필요
     lazy var idTextField: UITextField = {
         let idText = UITextField()
@@ -47,6 +57,44 @@ class ViewController: UIViewController {
         return loginButton
     }()
     
+    // 기능추가 필요
+    lazy var questionText: UIScrollView = {
+        let questionText = UITextView()
+        questionText.translatesAutoresizingMaskIntoConstraints = false
+        questionText.text = "..질문.."
+        questionText.isScrollEnabled = false
+        questionText.isSelectable = false
+        questionText.isEditable = false
+        return questionText
+    }()
+    
+    // O 버튼 -> UIImage 변경 필요
+    lazy var oBtn: UIButton = {
+        let oBtn = UIButton()
+        oBtn.setImage(UIImage(systemName: "mappin.and.ellipse"), for: .normal)
+        oBtn.translatesAutoresizingMaskIntoConstraints = false
+        oBtn.addTarget(self, action: #selector(oAction), for: .touchUpInside)
+        return oBtn
+    }()
+    
+    // X 버튼 -> UIImage 변경 필요
+    lazy var xBtn: UIButton = {
+        let xBtn = UIButton()
+        xBtn.setImage(UIImage(systemName: "mappin.and.ellipse"), for: .normal)
+        xBtn.translatesAutoresizingMaskIntoConstraints = false
+        xBtn.addTarget(self, action: #selector(xAction), for: .touchUpInside)
+        return xBtn
+    }()
+    
+    // 더 알아보기 버튼 -> UIImage 변경 필요
+    lazy var linkConnectionBtn: UIButton = {
+        let connectionBtn = UIButton()
+        connectionBtn.setImage(UIImage(systemName: "mappin.and.ellipse"), for: .normal)
+        connectionBtn.translatesAutoresizingMaskIntoConstraints = false
+        connectionBtn.addTarget(self, action: #selector(connectionAction), for: .touchUpInside)
+        return connectionBtn
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,6 +103,8 @@ class ViewController: UIViewController {
         self.view.addSubview(pwTextField)
         self.view.addSubview(signUpBtn)
         self.view.addSubview(loginBtn)
+        self.view.addSubview(oBtn)
+        self.view.addSubview(xBtn)
         
         // 위치 제약조건 설정 필요 ..
         // signUpBtn 위치 설정(제약 조건)
@@ -80,5 +130,17 @@ extension ViewController {
     
     @objc func loginAction() {
         // 로그인 action
+    }
+    
+    @objc func oAction() {
+        
+    }
+    
+    @objc func xAction() {
+        
+    }
+    
+    @objc func connectionAction() {
+        
     }
 }
