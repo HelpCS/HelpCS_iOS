@@ -95,6 +95,18 @@ class ViewController: UIViewController {
         return connectionBtn
     }()
     
+    // UIImage 보이기
+    lazy var myImage: UIImage = {
+        let myImage = UIImage()
+        
+        return myImage
+    }()
+    
+    // MyPageView에 있는 List
+    lazy var listView : UITextView = {
+        let listView = UITextView()
+        return listView
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         
