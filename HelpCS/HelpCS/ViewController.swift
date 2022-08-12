@@ -107,6 +107,7 @@ class ViewController: UIViewController {
         let listView = UITextView()
         return listView
     }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -117,6 +118,9 @@ class ViewController: UIViewController {
         self.view.addSubview(loginBtn)
         self.view.addSubview(oBtn)
         self.view.addSubview(xBtn)
+        self.view.addSubview(linkConnectionBtn)
+//        self.view.addSubview(myImage)
+        self.view.addSubview(listView)
         
         // 위치 제약조건 설정 필요 ..
         // signUpBtn 위치 설정(제약 조건)
