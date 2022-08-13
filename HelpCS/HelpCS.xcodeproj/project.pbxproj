@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2AB98CDA28A791E900A9C07C /* extensionFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CD928A791E900A9C07C /* extensionFile.swift */; };
+		2AB98CDF28A79CF800A9C07C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CDE28A79CF800A9C07C /* MainView.swift */; };
+		2AB98CE128A79D3E00A9C07C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CE028A79D3E00A9C07C /* LoginView.swift */; };
+		2AB98CE328A79D4700A9C07C /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CE228A79D4700A9C07C /* SignUpView.swift */; };
+		2AB98CE528A79D4F00A9C07C /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CE428A79D4F00A9C07C /* MyPageView.swift */; };
+		2AB98CE728A7A41600A9C07C /* MyPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CE628A7A41600A9C07C /* MyPageVC.swift */; };
+		2AB98CE928A7A80000A9C07C /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CE828A7A80000A9C07C /* MainVC.swift */; };
+		2AB98CEB28A7A9C100A9C07C /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CEA28A7A9C100A9C07C /* SignUpVC.swift */; };
 		2AE7E8CF289A134200B46581 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE7E8CE289A134200B46581 /* AppDelegate.swift */; };
 		2AE7E8D1289A134200B46581 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE7E8D0289A134200B46581 /* SceneDelegate.swift */; };
 		2AE7E8D3289A134200B46581 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE7E8D2289A134200B46581 /* ViewController.swift */; };
@@ -16,6 +24,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2AB98CD928A791E900A9C07C /* extensionFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionFile.swift; sourceTree = "<group>"; };
+		2AB98CDE28A79CF800A9C07C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		2AB98CE028A79D3E00A9C07C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		2AB98CE228A79D4700A9C07C /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		2AB98CE428A79D4F00A9C07C /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		2AB98CE628A7A41600A9C07C /* MyPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVC.swift; sourceTree = "<group>"; };
+		2AB98CE828A7A80000A9C07C /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		2AB98CEA28A7A9C100A9C07C /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		2AE7E8CB289A134200B46581 /* HelpCS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelpCS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE7E8CE289A134200B46581 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AE7E8D0289A134200B46581 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +53,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2AB98CCF28A7909C00A9C07C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2AE7E8D2289A134200B46581 /* ViewController.swift */,
+				2AB98CEA28A7A9C100A9C07C /* SignUpVC.swift */,
+				2AB98CE828A7A80000A9C07C /* MainVC.swift */,
+				2AB98CE628A7A41600A9C07C /* MyPageVC.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		2AB98CD628A7917700A9C07C /* extensionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2AB98CD928A791E900A9C07C /* extensionFile.swift */,
+			);
+			path = extensionViewController;
+			sourceTree = "<group>";
+		};
+		2AB98CDD28A79CDC00A9C07C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2AB98CE028A79D3E00A9C07C /* LoginView.swift */,
+				2AB98CDE28A79CF800A9C07C /* MainView.swift */,
+				2AB98CE228A79D4700A9C07C /* SignUpView.swift */,
+				2AB98CE428A79D4F00A9C07C /* MyPageView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		2AE7E8C2289A134200B46581 = {
 			isa = PBXGroup;
 			children = (
@@ -56,9 +102,11 @@
 		2AE7E8CD289A134200B46581 /* HelpCS */ = {
 			isa = PBXGroup;
 			children = (
+				2AB98CDD28A79CDC00A9C07C /* View */,
+				2AB98CD628A7917700A9C07C /* extensionViewController */,
+				2AB98CCF28A7909C00A9C07C /* ViewController */,
 				2AE7E8CE289A134200B46581 /* AppDelegate.swift */,
 				2AE7E8D0289A134200B46581 /* SceneDelegate.swift */,
-				2AE7E8D2289A134200B46581 /* ViewController.swift */,
 				2AE7E8D4289A134200B46581 /* Main.storyboard */,
 				2AE7E8D7289A134400B46581 /* Assets.xcassets */,
 				2AE7E8D9289A134400B46581 /* LaunchScreen.storyboard */,
@@ -138,7 +186,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AB98CDF28A79CF800A9C07C /* MainView.swift in Sources */,
+				2AB98CE928A7A80000A9C07C /* MainVC.swift in Sources */,
+				2AB98CE128A79D3E00A9C07C /* LoginView.swift in Sources */,
+				2AB98CEB28A7A9C100A9C07C /* SignUpVC.swift in Sources */,
 				2AE7E8D3289A134200B46581 /* ViewController.swift in Sources */,
+				2AB98CDA28A791E900A9C07C /* extensionFile.swift in Sources */,
+				2AB98CE728A7A41600A9C07C /* MyPageVC.swift in Sources */,
+				2AB98CE528A79D4F00A9C07C /* MyPageView.swift in Sources */,
+				2AB98CE328A79D4700A9C07C /* SignUpView.swift in Sources */,
 				2AE7E8CF289A134200B46581 /* AppDelegate.swift in Sources */,
 				2AE7E8D1289A134200B46581 /* SceneDelegate.swift in Sources */,
 			);
