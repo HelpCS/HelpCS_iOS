@@ -20,22 +20,16 @@ class MainView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // + 버튼
-    lazy var plusBtn: UIButton = {
-        let plusBtn = UIButton()
-        plusBtn.setTitle("+", for: .normal)     // 버튼에 들어갈 글씨
-        plusBtn.backgroundColor = .white       // 버튼 색상
-        plusBtn.setTitleColor(.darkGreen, for: .normal) // 버튼 글씨 색상
-        plusBtn.translatesAutoresizingMaskIntoConstraints = false
-        plusBtn.addTarget(self, action: #selector(oAction), for: .touchUpInside)
-        return plusBtn
-    }()
-    
     // 기능추가 필요
-    lazy var questionText: UIScrollView = {
+    lazy var questionText: UITextView = {
         let questionText = UITextView()
-        questionText.translatesAutoresizingMaskIntoConstraints = false
-        questionText.text = "..질문.."
+//        questionText.text = URL(string: "문제url")
+        questionText.text = "문제"
+        questionText.textColor = .darkGreen
+        questionText.layer.cornerRadius = (15)
+        questionText.layer.cornerRadius = 5
+        questionText.layer.borderWidth = 1
+        questionText.layer.borderColor = UIColor.darkGreen?.cgColor
         questionText.isScrollEnabled = false
         questionText.isSelectable = false
         questionText.isEditable = false
@@ -48,7 +42,10 @@ class MainView: UIView {
         oBtn.setTitle("O", for: .normal)     // 버튼에 들어갈 글씨
         oBtn.backgroundColor = .white     // 버튼 색상
         oBtn.setTitleColor(.darkGreen, for: .normal) // 버튼 글씨 색상
-        oBtn.translatesAutoresizingMaskIntoConstraints = false
+        oBtn.layer.cornerRadius = 5
+        oBtn.layer.borderWidth = 1
+        oBtn.layer.borderColor = UIColor.darkGreen?.cgColor
+        oBtn.layer.cornerRadius = (15)
         oBtn.addTarget(self, action: #selector(oAction), for: .touchUpInside)
         return oBtn
     }()
@@ -59,7 +56,10 @@ class MainView: UIView {
         xBtn.setTitle("X", for: .normal)     // 버튼에 들어갈 글씨
         xBtn.backgroundColor = .white      // 버튼 색상
         xBtn.setTitleColor(.darkGreen, for: .normal) // 버튼 글씨 색상
-        xBtn.translatesAutoresizingMaskIntoConstraints = false
+        xBtn.layer.cornerRadius = 5
+        xBtn.layer.borderWidth = 1
+        xBtn.layer.borderColor = UIColor.darkGreen?.cgColor
+        xBtn.layer.cornerRadius = (15)
         xBtn.addTarget(self, action: #selector(xAction), for: .touchUpInside)
         return xBtn
     }()
@@ -70,13 +70,16 @@ class MainView: UIView {
         connectionBtn.setTitle("더 알아보기", for: .normal)     // 버튼에 들어갈 글씨
         connectionBtn.backgroundColor = .white       // 버튼 색상
         connectionBtn.setTitleColor(.darkGreen, for: .normal) // 버튼 글씨 색상
+        connectionBtn.layer.cornerRadius = 5
+        connectionBtn.layer.borderWidth = 1
+        connectionBtn.layer.borderColor = UIColor.darkGreen?.cgColor
+        connectionBtn.layer.cornerRadius = (15)
         connectionBtn.translatesAutoresizingMaskIntoConstraints = false
         connectionBtn.addTarget(self, action: #selector(connectionAction), for: .touchUpInside)
         return connectionBtn
     }()
     
     func makeSubView() {
-        addSubview(plusBtn)
         addSubview(questionText)
         addSubview(oBtn)
         addSubview(xBtn)
@@ -84,16 +87,9 @@ class MainView: UIView {
     }
     
     func makeConstraint() {
-        plusBtn.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            plusBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
-            plusBtn.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
-            plusBtn.widthAnchor.constraint(equalToConstant: 50),
-            plusBtn.heightAnchor.constraint(equalToConstant: 50),
-        ])
         questionText.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            questionText.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 100),
+            questionText.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 130),
             questionText.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
             questionText.widthAnchor.constraint(equalToConstant: 350),
             questionText.heightAnchor.constraint(equalToConstant: 350),
@@ -114,7 +110,7 @@ class MainView: UIView {
         ])
         linkConnectionBtn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            linkConnectionBtn.topAnchor.constraint(equalTo: oBtn.topAnchor, constant: 90),
+            linkConnectionBtn.topAnchor.constraint(equalTo: oBtn.bottomAnchor, constant: 40),
             linkConnectionBtn.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
             linkConnectionBtn.widthAnchor.constraint(equalToConstant: 350),
             linkConnectionBtn.heightAnchor.constraint(equalToConstant: 50),
