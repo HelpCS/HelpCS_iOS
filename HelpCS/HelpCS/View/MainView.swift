@@ -22,7 +22,7 @@ class MainView: UIView {
     
     // category 버튼
     lazy var categoryBtn: UIButton = {
-        let oBtn = UIButton()
+        let categoryBtn = UIButton()
         categoryBtn.setTitle("user 의 "+"category 문제", for: .normal)     // 버튼에 들어갈 글씨
         categoryBtn.setTitleColor(.darkGreen, for: .normal) // 버튼 글씨 색상
         categoryBtn.addTarget(self, action: #selector(categoryAction), for: .touchUpInside)
@@ -99,14 +99,14 @@ class MainView: UIView {
     func makeConstraint() {
         categoryBtn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            categoryBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 100),
+            categoryBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 90),
             categoryBtn.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
             categoryBtn.widthAnchor.constraint(equalToConstant: 350),
-            categoryBtn.heightAnchor.constraint(equalToConstant: 350),
+            categoryBtn.heightAnchor.constraint(equalToConstant: 10),
         ])
         questionText.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            questionText.topAnchor.constraint(equalTo: categoryBtn.bottomAnchor, constant: 30),
+            questionText.topAnchor.constraint(equalTo: categoryBtn.bottomAnchor, constant: 40),
             questionText.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
             questionText.widthAnchor.constraint(equalToConstant: 350),
             questionText.heightAnchor.constraint(equalToConstant: 350),
