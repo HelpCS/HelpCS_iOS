@@ -25,6 +25,11 @@ class MainView: UIView {
         let categoryBtn = UIButton()
         categoryBtn.setTitle("user 의 "+"category 문제", for: .normal)     // 버튼에 들어갈 글씨
         categoryBtn.setTitleColor(.darkGreen, for: .normal) // 버튼 글씨 색상
+        categoryBtn.backgroundColor = .newYellow     // 버튼 색상
+        categoryBtn.layer.cornerRadius = 5
+        categoryBtn.layer.borderWidth = 1
+        categoryBtn.layer.borderColor = UIColor.newYellow?.cgColor
+        categoryBtn.layer.cornerRadius = (10)
         categoryBtn.addTarget(self, action: #selector(categoryAction), for: .touchUpInside)
         return categoryBtn
     }()
@@ -35,6 +40,7 @@ class MainView: UIView {
 //        questionText.text = URL(string: "문제url")
         questionText.text = "문제"
         questionText.textColor = .darkGreen
+        questionText.textAlignment = .center
         questionText.layer.cornerRadius = (15)
         questionText.layer.cornerRadius = 5
         questionText.layer.borderWidth = 1
@@ -99,14 +105,14 @@ class MainView: UIView {
     func makeConstraint() {
         categoryBtn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            categoryBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 90),
+            categoryBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 80),
             categoryBtn.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
-            categoryBtn.widthAnchor.constraint(equalToConstant: 350),
-            categoryBtn.heightAnchor.constraint(equalToConstant: 10),
+            categoryBtn.widthAnchor.constraint(equalToConstant: 250),
+            categoryBtn.heightAnchor.constraint(equalToConstant: 30),
         ])
         questionText.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            questionText.topAnchor.constraint(equalTo: categoryBtn.bottomAnchor, constant: 40),
+            questionText.topAnchor.constraint(equalTo: categoryBtn.bottomAnchor, constant: 30),
             questionText.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
             questionText.widthAnchor.constraint(equalToConstant: 350),
             questionText.heightAnchor.constraint(equalToConstant: 350),

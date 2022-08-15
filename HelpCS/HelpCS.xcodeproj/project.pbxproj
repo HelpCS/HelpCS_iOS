@@ -15,6 +15,12 @@
 		2AB98CEB28A7A9C100A9C07C /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CEA28A7A9C100A9C07C /* SignUpVC.swift */; };
 		2AB98CED28A7DE6E00A9C07C /* extensionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CEC28A7DE6E00A9C07C /* extensionVC.swift */; };
 		2AB98CF028A7DE8F00A9C07C /* extensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CEF28A7DE8F00A9C07C /* extensionView.swift */; };
+		2AB98CF328AA2EFD00A9C07C /* LoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CF228AA2EFD00A9C07C /* LoginInfo.swift */; };
+		2AB98CF528AA2F4D00A9C07C /* SignUpInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CF428AA2F4D00A9C07C /* SignUpInfo.swift */; };
+		2AB98CF728AA31B400A9C07C /* QuestionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CF628AA31B400A9C07C /* QuestionInfo.swift */; };
+		2AB98CF928AA320B00A9C07C /* LoginSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CF828AA320B00A9C07C /* LoginSuccess.swift */; };
+		2AB98CFC28AA336200A9C07C /* RestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CFB28AA336200A9C07C /* RestAPI.swift */; };
+		2AB98CFE28AA33F500A9C07C /* SignUpSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CFD28AA33F500A9C07C /* SignUpSuccess.swift */; };
 		2AE7E8CF289A134200B46581 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE7E8CE289A134200B46581 /* AppDelegate.swift */; };
 		2AE7E8D1289A134200B46581 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE7E8D0289A134200B46581 /* SceneDelegate.swift */; };
 		2AE7E8D3289A134200B46581 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE7E8D2289A134200B46581 /* ViewController.swift */; };
@@ -32,6 +38,12 @@
 		2AB98CEA28A7A9C100A9C07C /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		2AB98CEC28A7DE6E00A9C07C /* extensionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionVC.swift; sourceTree = "<group>"; };
 		2AB98CEF28A7DE8F00A9C07C /* extensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionView.swift; sourceTree = "<group>"; };
+		2AB98CF228AA2EFD00A9C07C /* LoginInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInfo.swift; sourceTree = "<group>"; };
+		2AB98CF428AA2F4D00A9C07C /* SignUpInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInfo.swift; sourceTree = "<group>"; };
+		2AB98CF628AA31B400A9C07C /* QuestionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionInfo.swift; sourceTree = "<group>"; };
+		2AB98CF828AA320B00A9C07C /* LoginSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSuccess.swift; sourceTree = "<group>"; };
+		2AB98CFB28AA336200A9C07C /* RestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPI.swift; sourceTree = "<group>"; };
+		2AB98CFD28AA33F500A9C07C /* SignUpSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSuccess.swift; sourceTree = "<group>"; };
 		2AE7E8CB289A134200B46581 /* HelpCS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelpCS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE7E8CE289A134200B46581 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AE7E8D0289A134200B46581 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +95,26 @@
 			path = extensionFile;
 			sourceTree = "<group>";
 		};
+		2AB98CF128AA2EE900A9C07C /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				2AB98CF228AA2EFD00A9C07C /* LoginInfo.swift */,
+				2AB98CF428AA2F4D00A9C07C /* SignUpInfo.swift */,
+				2AB98CF828AA320B00A9C07C /* LoginSuccess.swift */,
+				2AB98CFD28AA33F500A9C07C /* SignUpSuccess.swift */,
+				2AB98CF628AA31B400A9C07C /* QuestionInfo.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		2AB98CFA28AA335700A9C07C /* API */ = {
+			isa = PBXGroup;
+			children = (
+				2AB98CFB28AA336200A9C07C /* RestAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		2AE7E8C2289A134200B46581 = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +134,8 @@
 		2AE7E8CD289A134200B46581 /* HelpCS */ = {
 			isa = PBXGroup;
 			children = (
+				2AB98CFA28AA335700A9C07C /* API */,
+				2AB98CF128AA2EE900A9C07C /* DTO */,
 				2AB98CEE28A7DE7A00A9C07C /* extensionFile */,
 				2AB98CDD28A79CDC00A9C07C /* View */,
 				2AB98CCF28A7909C00A9C07C /* ViewController */,
@@ -186,16 +220,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AB98CFC28AA336200A9C07C /* RestAPI.swift in Sources */,
 				2AB98CF028A7DE8F00A9C07C /* extensionView.swift in Sources */,
 				2AB98CDF28A79CF800A9C07C /* MainView.swift in Sources */,
 				2AB98CE928A7A80000A9C07C /* MainVC.swift in Sources */,
+				2AB98CF328AA2EFD00A9C07C /* LoginInfo.swift in Sources */,
+				2AB98CF528AA2F4D00A9C07C /* SignUpInfo.swift in Sources */,
 				2AB98CED28A7DE6E00A9C07C /* extensionVC.swift in Sources */,
+				2AB98CF928AA320B00A9C07C /* LoginSuccess.swift in Sources */,
 				2AB98CE128A79D3E00A9C07C /* LoginView.swift in Sources */,
+				2AB98CF728AA31B400A9C07C /* QuestionInfo.swift in Sources */,
 				2AB98CEB28A7A9C100A9C07C /* SignUpVC.swift in Sources */,
 				2AE7E8D3289A134200B46581 /* ViewController.swift in Sources */,
 				2AB98CE728A7A41600A9C07C /* MyPageVC.swift in Sources */,
 				2AB98CE328A79D4700A9C07C /* SignUpView.swift in Sources */,
 				2AE7E8CF289A134200B46581 /* AppDelegate.swift in Sources */,
+				2AB98CFE28AA33F500A9C07C /* SignUpSuccess.swift in Sources */,
 				2AE7E8D1289A134200B46581 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

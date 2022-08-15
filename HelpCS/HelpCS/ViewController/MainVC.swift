@@ -23,11 +23,20 @@ class MainVC: UIViewController {
     
     lazy var myPageBtn: UIButton = {
         let myPageBtn = UIButton()
-        myPageBtn.addTarget(self, action: #selector(myPageBtnPressed), for: .touchUpInside)
-        myPageBtn.setImage(UIImage.init(systemName: "person.circle"), for: .normal)
+        // 로그아웃 버튼
+        myPageBtn.setImage(UIImage.init(systemName: "person.crop.circle.badge.xmark"), for: .normal)
+        myPageBtn.addTarget(self, action: #selector(logOutAction), for: .touchUpInside)
+        // MyPage 이동하기 위한 버튼
+//        myPageBtn.addTarget(self, action: #selector(myPageBtnPressed), for: .touchUpInside)
+//        myPageBtn.setImage(UIImage.init(systemName: "person.circle"), for: .normal)
         myPageBtn.tintColor = .black
         return myPageBtn
     }()
+    
+    @objc func logOutAction(sender: UITapGestureRecognizer) {
+        let vc = ViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     @objc func myPageBtnPressed() {
         let vc = MyPageVC()
