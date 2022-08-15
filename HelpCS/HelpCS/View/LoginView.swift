@@ -78,7 +78,7 @@ class LoginView: UIView {
     lazy var signUpBtn: UIButton = {
         let signUpButton = UIButton()
         signUpButton.setTitle("회원가입", for: .normal)     // 버튼에 들어갈 글씨
-        signUpButton.backgroundColor = .white       // 버튼 색상
+        signUpButton.backgroundColor = .newYellow       // 버튼 색상
         signUpButton.setTitleColor(.darkGreen, for: .normal) // 버튼 글씨 색상
         signUpButton.layer.cornerRadius = 5
         signUpButton.layer.borderWidth = 1
@@ -92,7 +92,7 @@ class LoginView: UIView {
     lazy var loginBtn: UIButton = {
         let loginButton = UIButton()
         loginButton.setTitle("로그인", for: .normal)     // 버튼에 들어갈 글씨
-        loginButton.backgroundColor = .white       // 버튼 색상
+        loginButton.backgroundColor = .newYellow       // 버튼 색상
         loginButton.setTitleColor(.darkGreen, for: .normal) // 버튼 글씨 색상
         loginButton.layer.cornerRadius = 5
         loginButton.layer.borderWidth = 1

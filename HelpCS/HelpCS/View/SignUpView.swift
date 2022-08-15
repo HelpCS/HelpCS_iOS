@@ -76,7 +76,7 @@ class SignUpView: UIView {
     lazy var backBtn: UIButton = {
         let backButton = UIButton()
         backButton.setTitle("돌아가기", for: .normal)     // 버튼에 들어갈 글씨
-        backButton.backgroundColor = .white       // 버튼 색상
+        backButton.backgroundColor = .newYellow       // 버튼 색상
         backButton.setTitleColor(.darkGreen, for: .normal) // 버튼 글씨 색상
         backButton.layer.cornerRadius = 5
         backButton.layer.borderWidth = 1
@@ -91,7 +91,7 @@ class SignUpView: UIView {
     lazy var saveBtn: UIButton = {
         let saveButton = UIButton()
         saveButton.setTitle("저장하기", for: .normal)     // 버튼에 들어갈 글씨
-        saveButton.backgroundColor = .white       // 버튼 색상
+        saveButton.backgroundColor = .newYellow       // 버튼 색상
         saveButton.setTitleColor(.darkGreen, for: .normal) // 버튼 글씨 색상
         saveButton.layer.cornerRadius = 5
         saveButton.layer.borderWidth = 1

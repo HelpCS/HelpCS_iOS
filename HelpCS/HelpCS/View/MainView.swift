@@ -20,6 +20,15 @@ class MainView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // category 버튼
+    lazy var categoryBtn: UIButton = {
+        let oBtn = UIButton()
+        categoryBtn.setTitle("user 의 "+"category 문제", for: .normal)     // 버튼에 들어갈 글씨
+        categoryBtn.setTitleColor(.darkGreen, for: .normal) // 버튼 글씨 색상
+        categoryBtn.addTarget(self, action: #selector(categoryAction), for: .touchUpInside)
+        return categoryBtn
+    }()
+    
     // 기능추가 필요
     lazy var questionText: UITextView = {
         let questionText = UITextView()
@@ -36,7 +45,7 @@ class MainView: UIView {
         return questionText
     }()
     
-    // O 버튼 -> UIImage 변경 필요
+    // O 버튼
     lazy var oBtn: UIButton = {
         let oBtn = UIButton()
         oBtn.setTitle("O", for: .normal)     // 버튼에 들어갈 글씨
@@ -50,7 +59,7 @@ class MainView: UIView {
         return oBtn
     }()
     
-    // X 버튼 -> UIImage 변경 필요
+    // X 버튼
     lazy var xBtn: UIButton = {
         let xBtn = UIButton()
         xBtn.setTitle("X", for: .normal)     // 버튼에 들어갈 글씨
@@ -64,7 +73,7 @@ class MainView: UIView {
         return xBtn
     }()
     
-    // 더 알아보기 버튼 -> UIImage 변경 필요
+    // 더 알아보기 버튼
     lazy var linkConnectionBtn: UIButton = {
         let connectionBtn = UIButton()
         connectionBtn.setTitle("더 알아보기", for: .normal)     // 버튼에 들어갈 글씨
@@ -81,15 +90,23 @@ class MainView: UIView {
     
     func makeSubView() {
         addSubview(questionText)
+        addSubview(categoryBtn)
         addSubview(oBtn)
         addSubview(xBtn)
         addSubview(linkConnectionBtn)
     }
     
     func makeConstraint() {
+        categoryBtn.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            categoryBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 100),
+            categoryBtn.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
+            categoryBtn.widthAnchor.constraint(equalToConstant: 350),
+            categoryBtn.heightAnchor.constraint(equalToConstant: 350),
+        ])
         questionText.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            questionText.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 130),
+            questionText.topAnchor.constraint(equalTo: categoryBtn.bottomAnchor, constant: 30),
             questionText.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
             questionText.widthAnchor.constraint(equalToConstant: 350),
             questionText.heightAnchor.constraint(equalToConstant: 350),

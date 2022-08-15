@@ -10,6 +10,7 @@ import UIKit
 extension UIColor {
     class var lightGreen: UIColor? { return UIColor(named: "lightGreen")}
     class var lightYellow: UIColor? { return UIColor(named: "lightYellow")}
+    class var newYellow: UIColor? { return UIColor(named: "newYellow")}
     class var darkGreen: UIColor? { return UIColor(named: "darkGreen")}
 }
 
