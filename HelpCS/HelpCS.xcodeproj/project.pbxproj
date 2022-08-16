@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2AB98CDF28A79CF800A9C07C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CDE28A79CF800A9C07C /* MainView.swift */; };
 		2AB98CE128A79D3E00A9C07C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CE028A79D3E00A9C07C /* LoginView.swift */; };
-		2AB98CE328A79D4700A9C07C /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CE228A79D4700A9C07C /* SignUpView.swift */; };
 		2AB98CE728A7A41600A9C07C /* MyPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CE628A7A41600A9C07C /* MyPageVC.swift */; };
 		2AB98CE928A7A80000A9C07C /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CE828A7A80000A9C07C /* MainVC.swift */; };
 		2AB98CEB28A7A9C100A9C07C /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CEA28A7A9C100A9C07C /* SignUpVC.swift */; };
@@ -33,7 +32,6 @@
 /* Begin PBXFileReference section */
 		2AB98CDE28A79CF800A9C07C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2AB98CE028A79D3E00A9C07C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		2AB98CE228A79D4700A9C07C /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		2AB98CE628A7A41600A9C07C /* MyPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVC.swift; sourceTree = "<group>"; };
 		2AB98CE828A7A80000A9C07C /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		2AB98CEA28A7A9C100A9C07C /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
@@ -83,7 +81,6 @@
 			children = (
 				2AB98CE028A79D3E00A9C07C /* LoginView.swift */,
 				2AB98CDE28A79CF800A9C07C /* MainView.swift */,
-				2AB98CE228A79D4700A9C07C /* SignUpView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -117,6 +114,13 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		2AB98D0228ABCCA000A9C07C /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
 		2AE7E8C2289A134200B46581 = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +140,7 @@
 		2AE7E8CD289A134200B46581 /* HelpCS */ = {
 			isa = PBXGroup;
 			children = (
+				2AB98D0228ABCCA000A9C07C /* Animation */,
 				2AB98CFA28AA335700A9C07C /* API */,
 				2AB98CF128AA2EE900A9C07C /* DTO */,
 				2AB98CEE28A7DE7A00A9C07C /* extensionFile */,
@@ -241,7 +246,6 @@
 				2AB98CEB28A7A9C100A9C07C /* SignUpVC.swift in Sources */,
 				2AE7E8D3289A134200B46581 /* ViewController.swift in Sources */,
 				2AB98CE728A7A41600A9C07C /* MyPageVC.swift in Sources */,
-				2AB98CE328A79D4700A9C07C /* SignUpView.swift in Sources */,
 				2AE7E8CF289A134200B46581 /* AppDelegate.swift in Sources */,
 				2AB98CFE28AA33F500A9C07C /* SignUpSuccess.swift in Sources */,
 				2AE7E8D1289A134200B46581 /* SceneDelegate.swift in Sources */,

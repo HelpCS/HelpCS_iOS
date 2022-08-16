@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import Lottie
 
 extension MainView {
     // 카테고리 선택하기
     @objc func categoryAction(sender: UITapGestureRecognizer) {
         
     }
+    
     // 정답 확인하기
     @objc func oAction(sender: UITapGestureRecognizer) {
         print("O click")
@@ -33,15 +35,6 @@ extension MainView {
         }
     }
     
-}
-
-extension SignUpView {
-    @objc func backBtnAction() {
-        print("로그인 화면으로 돌아가기!")
-    }
-    @objc func saveAction() {
-        print("저장하기!")
-    }
 }
 
 extension LoginView {

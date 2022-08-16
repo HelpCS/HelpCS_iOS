@@ -40,6 +40,17 @@ extension ViewController: UITableViewDelegate {
     }
 
 }
+extension MainVC: UITableViewDelegate {
+    // 정답 확인하기
+    @objc func oAction(sender: UITapGestureRecognizer) {
+        print("O click")
+        
+    }
+    // 정답 확인하기
+    @objc func xAction(sender: UITapGestureRecognizer) {
+        print("X click")
+    }
+}
 
 extension SignUpVC: UITableViewDelegate {
     @objc func backBtnAction() {
@@ -49,6 +60,19 @@ extension SignUpVC: UITableViewDelegate {
     @objc func saveAction() {
         print("저장하기!")
         // 저장하기 Action
+        validateForm()
         navigationController?.popViewController(animated: true)
+    }
+    
+    func validateForm() {
+        guard let nameText = nameTextField.text, !nameText.isEmpty else { return }
+        guard let idText = idTextField.text, !idText.isEmpty else { return }
+        guard let pwText = pwTextField.text, !pwText.isEmpty else { return }
+        guard let checkPwText = checkPwTextField.text, !checkPwText.isEmpty else { return }
+        
+        startSigningUp(name: nameText, id: idText, pw: pwText)
+    }
+    func startSigningUp(name: String, id: String, pw: String) {
+        print("Please call any Sign up api for registration: ", name, id, pw)
     }
 }

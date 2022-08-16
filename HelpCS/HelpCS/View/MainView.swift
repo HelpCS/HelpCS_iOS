@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class MainView: UIView {
     
@@ -51,34 +52,6 @@ class MainView: UIView {
         return questionText
     }()
     
-    // O 버튼
-    lazy var oBtn: UIButton = {
-        let oBtn = UIButton()
-        oBtn.setTitle("O", for: .normal)     // 버튼에 들어갈 글씨
-        oBtn.backgroundColor = .white     // 버튼 색상
-        oBtn.setTitleColor(.darkGreen, for: .normal) // 버튼 글씨 색상
-        oBtn.layer.cornerRadius = 5
-        oBtn.layer.borderWidth = 1
-        oBtn.layer.borderColor = UIColor.darkGreen?.cgColor
-        oBtn.layer.cornerRadius = (15)
-        oBtn.addTarget(self, action: #selector(oAction), for: .touchUpInside)
-        return oBtn
-    }()
-    
-    // X 버튼
-    lazy var xBtn: UIButton = {
-        let xBtn = UIButton()
-        xBtn.setTitle("X", for: .normal)     // 버튼에 들어갈 글씨
-        xBtn.backgroundColor = .white      // 버튼 색상
-        xBtn.setTitleColor(.darkGreen, for: .normal) // 버튼 글씨 색상
-        xBtn.layer.cornerRadius = 5
-        xBtn.layer.borderWidth = 1
-        xBtn.layer.borderColor = UIColor.darkGreen?.cgColor
-        xBtn.layer.cornerRadius = (15)
-        xBtn.addTarget(self, action: #selector(xAction), for: .touchUpInside)
-        return xBtn
-    }()
-    
     // 더 알아보기 버튼
     lazy var linkConnectionBtn: UIButton = {
         let connectionBtn = UIButton()
@@ -97,8 +70,6 @@ class MainView: UIView {
     func makeSubView() {
         addSubview(questionText)
         addSubview(categoryBtn)
-        addSubview(oBtn)
-        addSubview(xBtn)
         addSubview(linkConnectionBtn)
     }
     
@@ -117,23 +88,9 @@ class MainView: UIView {
             questionText.widthAnchor.constraint(equalToConstant: 350),
             questionText.heightAnchor.constraint(equalToConstant: 350),
         ])
-        oBtn.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            oBtn.topAnchor.constraint(equalTo: questionText.topAnchor, constant: 400),
-            oBtn.centerXAnchor.constraint(equalTo: centerXAnchor, constant: -90),
-            oBtn.widthAnchor.constraint(equalToConstant: 150),
-            oBtn.heightAnchor.constraint(equalToConstant: 70),
-        ])
-        xBtn.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            xBtn.topAnchor.constraint(equalTo: questionText.topAnchor, constant: 400),
-            xBtn.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 90),
-            xBtn.widthAnchor.constraint(equalToConstant: 150),
-            xBtn.heightAnchor.constraint(equalToConstant: 70),
-        ])
         linkConnectionBtn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            linkConnectionBtn.topAnchor.constraint(equalTo: oBtn.bottomAnchor, constant: 40),
+            linkConnectionBtn.topAnchor.constraint(equalTo: categoryBtn.bottomAnchor, constant: 470),
             linkConnectionBtn.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
             linkConnectionBtn.widthAnchor.constraint(equalToConstant: 350),
             linkConnectionBtn.heightAnchor.constraint(equalToConstant: 50),
