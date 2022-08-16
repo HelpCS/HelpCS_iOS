@@ -31,57 +31,130 @@ class SignUpVC: UIViewController {
         
     }
     
-    // 이름 입력창
-    lazy var nameTextField: UITextField = {
-        let nameText = UITextField()
-//        nameText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
-        nameText.placeholder = "이름"
-        nameText.layer.cornerRadius = 5
-        nameText.layer.borderWidth = 1
-        nameText.layer.borderColor = UIColor.darkGreen?.cgColor
-        nameText.borderStyle = .roundedRect
-        nameText.clearButtonMode = .whileEditing   // 입력하기 위해서 clear한 btn상태
-        return nameText
-    }()
+    var userModel = SignUpInfo() // 인스턴스 생성
     
-    // 아이디 입력창
-    lazy var idTextField: UITextField = {
-        let idText = UITextField()
-//        idText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
-        idText.placeholder = "아이디"
-        idText.layer.cornerRadius = 5
-        idText.layer.borderWidth = 1
-        idText.layer.borderColor = UIColor.darkGreen?.cgColor
-        idText.borderStyle = .roundedRect
-        idText.clearButtonMode = .whileEditing   // 입력하기 위해서 clear한 btn상태
-        return idText
-    }()
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var idTextField: UITextField!
+    @IBOutlet weak var pwdTextField: UITextField!
+    @IBOutlet weak var checkPwdTextField: UITextField!
+    @IBOutlet weak var signUpBtn: UIButton!
     
-    // 비밀번호 입력창
-    lazy var pwTextField: UITextField = {
-        let pwText = UITextField()
-//        pwText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
-        pwText.placeholder = "비밀번호"
-        pwText.layer.cornerRadius = 5
-        pwText.layer.borderWidth = 1
-        pwText.layer.borderColor = UIColor.darkGreen?.cgColor
-        pwText.borderStyle = .roundedRect
-        pwText.clearButtonMode = .whileEditing   // 입력하기 위해서 clear한 btn상태
-        return pwText
-    }()
     
-    // 비밀번호 확인 입력창
-    lazy var checkPwTextField: UITextField = {
-        let checkpwText = UITextField()
-//        checkpwText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
-        checkpwText.placeholder = "비밀번호 확인"
-        checkpwText.layer.cornerRadius = 5
-        checkpwText.layer.borderWidth = 1
-        checkpwText.layer.borderColor = UIColor.darkGreen?.cgColor
-        checkpwText.borderStyle = .roundedRect
-        checkpwText.clearButtonMode = .whileEditing   // 입력하기 위해서 clear한 btn상태
-        return checkpwText
-    }()
+    // 회원 확인 method
+    func isUser(id: String) -> Bool {
+        for user in userModel.users {
+            if user.email == id {
+                return true // 이미 회원인 경우
+            }
+        }
+        return false
+    }
+    
+    
+    @IBAction func didTapJoinButton(_ sender: Any) {
+        // 옵셔널 바인딩 & 예외 처리 : Textfield가 빈문자열이 아니고, nil이 아닐 때
+        guard let name = nameTextField.text, !name.isEmpty else { return }
+        guard let id = idTextField.text, !id.isEmpty else { return }
+        guard let pwd = pwdTextField.text, !pwd.isEmpty else { return }
+        guard let checkPwd = checkPwd.text, !checkPwd.isEmpty else { return }
+        
+        
+        if userModel.isValidEmail(id: id){
+            if let removable = self.view.viewWithTag(100) {
+                removable.removeFromSuperview()
+            }
+        }
+        else {
+            shakeTextField(textField: nameTextField)
+            let emailLabel = UILabel(frame: CGRect(x: 68, y: 350, width: 279, height: 45))
+            emailLabel.text = "이름을 입력해주세요."
+            emailLabel.textColor = UIColor.red
+            emailLabel.tag = 100
+            
+            self.view.addSubview(emailLabel)
+        }
+        
+        if userModel.isValidPassword(pwd: pwd){
+            if let removable = self.view.viewWithTag(101) {
+                removable.removeFromSuperview()
+            }
+        }
+        else{
+            shakeTextField(textField: pwdTextField)
+            let passwordLabel = UILabel(frame: CGRect(x: 68, y: 435, width: 279, height: 45))
+            passwordLabel.text = "비밀번호 형식을 확인해 주세요"
+            passwordLabel.textColor = UIColor.red
+            passwordLabel.tag = 101
+            
+            self.view.addSubview(passwordLabel)
+        } // 비밀번호 형식 오류
+        
+        if pwd == checkPwd {
+            if let removable = self.view.viewWithTag(102) {
+                removable.removeFromSuperview()
+            }
+        }
+        else {
+            shakeTextField(textField: checkPwdTextField)
+            let passwordConfirmLabel = UILabel(frame: CGRect(x: 68, y: 470, width: 279, height: 45))
+            passwordConfirmLabel.text = "비밀번호가 다릅니다."
+            passwordConfirmLabel.textColor = UIColor.red
+            passwordConfirmLabel.tag = 102
+            
+            self.view.addSubview(passwordConfirmLabel)
+        }
+        
+        if userModel.isValidEmail(id: id) && userModel.isValidPassword(pwd: pwd) && pwd == checkPwd {
+            let joinFail: Bool = isUser(id: id)
+            if joinFail {
+                print("이메일 중복")
+                shakeTextField(textField: idTextField)
+                let joinFailLabel = UILabel(frame: CGRect(x: 68, y: 510, width: 279, height: 45))
+                joinFailLabel.text = "이미 가입된 아이디입니다."
+                joinFailLabel.textColor = UIColor.red
+                joinFailLabel.tag = 103
+                
+                self.view.addSubview(joinFailLabel)
+            }
+            else {
+                print("가입 성공")
+                if let removable = self.view.viewWithTag(103) {
+                    removable.removeFromSuperview()
+                }
+                self.performSegue(withIdentifier: "showMap", sender: self)
+            }
+        }
+        
+        
+    }
+    
+    // TextField 흔들기 애니메이션
+    func shakeTextField(textField: UITextField) -> Void{
+        UIView.animate(withDuration: 0.2, animations: {
+            textField.frame.origin.x -= 10
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.2, animations: {
+                textField.frame.origin.x += 20
+            }, completion: { _ in
+                UIView.animate(withDuration: 0.2, animations: {
+                    textField.frame.origin.x -= 10
+                })
+            })
+        })
+    }
+    
+    // 다음 누르면 입력창 넘어가기, 완료 누르면 키보드 내려가기
+    @objc func didEndOnExit(_ sender: UITextField) {
+        if nameTextField.isFirstResponder {
+            idTextField.becomeFirstResponder()
+        }
+        else if idTextField.isFirstResponder {
+            pwdTextField.becomeFirstResponder()
+        }
+        else if pwdTextField.isFirstResponder {
+            checkPwdTextField.becomeFirstResponder()
+        }
+    }
     
     // 돌아가기 버튼
     lazy var backBtn: UIButton = {
@@ -97,7 +170,7 @@ class SignUpVC: UIViewController {
         backButton.addTarget(self, action: #selector(backBtnAction), for: .touchUpInside)
         return backButton
     }()
-    
+
     // 저장하기 버튼
     lazy var saveBtn: UIButton = {
         let saveButton = UIButton()
@@ -112,8 +185,9 @@ class SignUpVC: UIViewController {
         saveButton.addTarget(self, action: #selector(saveAction), for: .touchUpInside)
         return saveButton
     }()
+    
     func setupTextFields() {
-        let stackView = UIStackView(arrangedSubviews: [nameTextField, idTextField, pwTextField, checkPwTextField])
+        let stackView = UIStackView(arrangedSubviews: [nameTextField, idTextField, pwdTextField, checkPwdTextField])
         stackView.axis = .vertical
         stackView.spacing = 10
         stackView.distribution = .fillEqually
@@ -125,6 +199,17 @@ class SignUpVC: UIViewController {
         stackView.widthAnchor.constraint(equalToConstant: 350).isActive = true
         stackView.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // 키보드 내리기
+        nameTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
+        idTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
+        pwdTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
+        checkPwdTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
+        signUpBtn.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
+    }
     
     override func loadView() {
         super.loadView()
@@ -134,8 +219,8 @@ class SignUpVC: UIViewController {
         self.view.addSubview(label)
         self.view.addSubview(nameTextField)
         self.view.addSubview(idTextField)
-        self.view.addSubview(pwTextField)
-        self.view.addSubview(checkPwTextField)
+        self.view.addSubview(pwdTextField)
+        self.view.addSubview(checkPwdTextField)
         self.view.addSubview(backBtn)
         self.view.addSubview(saveBtn)
         
@@ -168,33 +253,86 @@ class SignUpVC: UIViewController {
             idTextField.widthAnchor.constraint(equalToConstant: 350),
             idTextField.heightAnchor.constraint(equalToConstant: 50),
         ])
-        pwTextField.translatesAutoresizingMaskIntoConstraints = false
+        pwdTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            pwTextField.topAnchor.constraint(equalTo: idTextField.topAnchor, constant: 80),
-            pwTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
-            pwTextField.widthAnchor.constraint(equalToConstant: 350),
-            pwTextField.heightAnchor.constraint(equalToConstant: 50),
+            pwdTextField.topAnchor.constraint(equalTo: idTextField.topAnchor, constant: 80),
+            pwdTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
+            pwdTextField.widthAnchor.constraint(equalToConstant: 350),
+            pwdTextField.heightAnchor.constraint(equalToConstant: 50),
         ])
-        checkPwTextField.translatesAutoresizingMaskIntoConstraints = false
+        checkPwdTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            checkPwTextField.topAnchor.constraint(equalTo: pwTextField.topAnchor, constant: 80),
-            checkPwTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
-            checkPwTextField.widthAnchor.constraint(equalToConstant: 350),
-            checkPwTextField.heightAnchor.constraint(equalToConstant: 50),
+            checkPwdTextField.topAnchor.constraint(equalTo: pwdTextField.topAnchor, constant: 80),
+            checkPwdTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
+            checkPwdTextField.widthAnchor.constraint(equalToConstant: 350),
+            checkPwdTextField.heightAnchor.constraint(equalToConstant: 50),
         ])
         backBtn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            backBtn.topAnchor.constraint(equalTo: checkPwTextField.topAnchor, constant: 100),
+            backBtn.topAnchor.constraint(equalTo: checkPwdTextField.topAnchor, constant: 100),
             backBtn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -80),
             backBtn.widthAnchor.constraint(equalToConstant: 100),
             backBtn.heightAnchor.constraint(equalToConstant: 50),
         ])
         saveBtn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            saveBtn.topAnchor.constraint(equalTo: checkPwTextField.topAnchor, constant: 100),
+            saveBtn.topAnchor.constraint(equalTo: checkPwdTextField.topAnchor, constant: 100),
             saveBtn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 80),
             saveBtn.widthAnchor.constraint(equalToConstant: 100),
             saveBtn.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
+    
 }
+//    // 이름 입력창
+//    lazy var nameTextField: UITextField = {
+//        let nameText = UITextField()
+////        nameText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
+//        nameText.placeholder = "이름"
+//        nameText.layer.cornerRadius = 5
+//        nameText.layer.borderWidth = 1
+//        nameText.layer.borderColor = UIColor.darkGreen?.cgColor
+//        nameText.borderStyle = .roundedRect
+//        nameText.clearButtonMode = .whileEditing   // 입력하기 위해서 clear한 btn상태
+//        return nameText
+//    }()
+//
+//    // 아이디 입력창
+//    lazy var idTextField: UITextField = {
+//        let idText = UITextField()
+////        idText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
+//        idText.placeholder = "아이디"
+//        idText.layer.cornerRadius = 5
+//        idText.layer.borderWidth = 1
+//        idText.layer.borderColor = UIColor.darkGreen?.cgColor
+//        idText.borderStyle = .roundedRect
+//        idText.clearButtonMode = .whileEditing   // 입력하기 위해서 clear한 btn상태
+//        return idText
+//    }()
+//
+//    // 비밀번호 입력창
+//    lazy var pwTextField: UITextField = {
+//        let pwText = UITextField()
+////        pwText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
+//        pwText.placeholder = "비밀번호"
+//        pwText.layer.cornerRadius = 5
+//        pwText.layer.borderWidth = 1
+//        pwText.layer.borderColor = UIColor.darkGreen?.cgColor
+//        pwText.borderStyle = .roundedRect
+//        pwText.clearButtonMode = .whileEditing   // 입력하기 위해서 clear한 btn상태
+//        return pwText
+//    }()
+//
+//    // 비밀번호 확인 입력창
+//    lazy var checkPwTextField: UITextField = {
+//        let checkpwText = UITextField()
+////        checkpwText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
+//        checkpwText.placeholder = "비밀번호 확인"
+//        checkpwText.layer.cornerRadius = 5
+//        checkpwText.layer.borderWidth = 1
+//        checkpwText.layer.borderColor = UIColor.darkGreen?.cgColor
+//        checkpwText.borderStyle = .roundedRect
+//        checkpwText.clearButtonMode = .whileEditing   // 입력하기 위해서 clear한 btn상태
+//        return checkpwText
+//    }()
+

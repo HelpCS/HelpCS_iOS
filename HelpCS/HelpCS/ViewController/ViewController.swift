@@ -13,6 +13,23 @@ class ViewController: UIViewController {
         return loginView
     }()
     
+    var loginInfo = LoginInfo() // 인스턴스 생성
+        
+    @IBOutlet weak var idTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+       
+        
+    // 로그인 method
+    func loginCheck(id: String, pwd: String) -> Bool {
+        for user in loginInfo.users {
+            if user.id == id && user.pwd == pwd {
+                return true // 로그인 성공
+            }
+        }
+        return false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.lightYellow
