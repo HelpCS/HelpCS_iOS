@@ -34,19 +34,17 @@ class SignUpVC: UIViewController {
         idTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
         pwdTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
         checkPwdTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
-        signUpBtn.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
+        saveBtn.addTarget(self, action: #selector(didTapJoinButton), for: UIControl.Event.editingDidEndOnExit)
         
     }
     
-    var userModel = SignUpInfo() // 인스턴스 생성
-    
-    @IBOutlet weak var signUpBtn: UIButton!
+    var userModel = SignUpInfo.init() // 인스턴스 생성
     
     
     // 회원 확인 method
     func isUser(id: String) -> Bool {
-        for user in userModel.users {
-            if user.email == id {
+        for user in [userModel] {
+            if user.id == id {
                 return true // 이미 회원인 경우
             }
         }
@@ -61,36 +59,35 @@ class SignUpVC: UIViewController {
         guard let pwd = pwdTextField.text, !pwd.isEmpty else { return }
         guard let checkPwd = checkPwdTextField.text, !checkPwd.isEmpty else { return }
         
-        
-        if userModel.isValidEmail(id: id){
-            if let removable = self.view.viewWithTag(100) {
-                removable.removeFromSuperview()
-            }
-        }
-        else {
-            shakeTextField(textField: nameTextField)
-            let emailLabel = UILabel(frame: CGRect(x: 68, y: 350, width: 279, height: 45))
-            emailLabel.text = "이름을 입력해주세요."
-            emailLabel.textColor = UIColor.red
-            emailLabel.tag = 100
-            
-            self.view.addSubview(emailLabel)
-        }
-        
-        if userModel.isValidPassword(pwd: pwd){
-            if let removable = self.view.viewWithTag(101) {
-                removable.removeFromSuperview()
-            }
-        }
-        else{
-            shakeTextField(textField: pwdTextField)
-            let passwordLabel = UILabel(frame: CGRect(x: 68, y: 435, width: 279, height: 45))
-            passwordLabel.text = "비밀번호 형식을 확인해 주세요"
-            passwordLabel.textColor = UIColor.red
-            passwordLabel.tag = 101
-            
-            self.view.addSubview(passwordLabel)
-        } // 비밀번호 형식 오류
+//        if userModel(id: id){
+//            if let removable = self.view.viewWithTag(100) {
+//                removable.removeFromSuperview()
+//            }
+//        }
+//        else {
+//            shakeTextField(textField: nameTextField)
+//            let emailLabel = UILabel(frame: CGRect(x: 68, y: 350, width: 279, height: 45))
+//            emailLabel.text = "이름을 입력해주세요."
+//            emailLabel.textColor = UIColor.red
+//            emailLabel.tag = 100
+//
+//            self.view.addSubview(emailLabel)
+//        }
+//
+//        if userModel(pwd: pwd){
+//            if let removable = self.view.viewWithTag(101) {
+//                removable.removeFromSuperview()
+//            }
+//        }
+//        else{
+//            shakeTextField(textField: pwdTextField)
+//            let passwordLabel = UILabel(frame: CGRect(x: 68, y: 435, width: 279, height: 45))
+//            passwordLabel.text = "비밀번호 형식을 확인해 주세요"
+//            passwordLabel.textColor = UIColor.red
+//            passwordLabel.tag = 101
+//
+//            self.view.addSubview(passwordLabel)
+//        } // 비밀번호 형식 오류
         
         if pwd == checkPwd {
             if let removable = self.view.viewWithTag(102) {
@@ -107,8 +104,10 @@ class SignUpVC: UIViewController {
             self.view.addSubview(passwordConfirmLabel)
         }
         
-        if userModel.isValidEmail(id: id) && userModel.isValidPassword(pwd: pwd) && pwd == checkPwd {
+        if (userModel.name == nameTextField.text) && (userModel.id == idTextField.text) && (userModel.pwd == pwdTextField.text) && pwd == checkPwd {
+            
             let joinFail: Bool = isUser(id: id)
+            
             if joinFail {
                 print("이메일 중복")
                 shakeTextField(textField: idTextField)
@@ -160,7 +159,7 @@ class SignUpVC: UIViewController {
     }
     
     // 이름 입력창
-    @IBOutlet weak var nameTextField: UITextField! = {
+    lazy var nameTextField: UITextField! = {
         let nameText = UITextField()
         //        nameText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
         nameText.placeholder = "이름"
@@ -173,7 +172,7 @@ class SignUpVC: UIViewController {
     }()
     
     // 아이디 입력창
-    @IBOutlet weak var idTextField: UITextField! = {
+    lazy var idTextField: UITextField! = {
         let idText = UITextField()
         //        idText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
         idText.placeholder = "아이디"
@@ -186,7 +185,7 @@ class SignUpVC: UIViewController {
     }()
     
     // 비밀번호 입력창
-    @IBOutlet weak var pwdTextField: UITextField! = {
+    lazy var pwdTextField: UITextField! = {
         let pwdText = UITextField()
         //        pwText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
         pwdText.placeholder = "비밀번호"
@@ -199,7 +198,7 @@ class SignUpVC: UIViewController {
     }()
     
     // 비밀번호 확인 입력창
-    @IBOutlet weak var checkPwdTextField: UITextField! = {
+    lazy var checkPwdTextField: UITextField! = {
         let checkpwdText = UITextField()
         //        checkpwText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
         checkpwdText.placeholder = "비밀번호 확인"
@@ -291,35 +290,35 @@ class SignUpVC: UIViewController {
         ])
         idTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            idTextField.topAnchor.constraint(equalTo: nameTextField.topAnchor, constant: 80),
+            idTextField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 280),
             idTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
             idTextField.widthAnchor.constraint(equalToConstant: 350),
             idTextField.heightAnchor.constraint(equalToConstant: 50),
         ])
         pwdTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            pwdTextField.topAnchor.constraint(equalTo: idTextField.topAnchor, constant: 80),
+            pwdTextField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 360),
             pwdTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
             pwdTextField.widthAnchor.constraint(equalToConstant: 350),
             pwdTextField.heightAnchor.constraint(equalToConstant: 50),
         ])
         checkPwdTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            checkPwdTextField.topAnchor.constraint(equalTo: pwdTextField.topAnchor, constant: 80),
+            checkPwdTextField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 440),
             checkPwdTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
             checkPwdTextField.widthAnchor.constraint(equalToConstant: 350),
             checkPwdTextField.heightAnchor.constraint(equalToConstant: 50),
         ])
         backBtn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            backBtn.topAnchor.constraint(equalTo: checkPwdTextField.topAnchor, constant: 100),
+            backBtn.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 600),
             backBtn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -80),
             backBtn.widthAnchor.constraint(equalToConstant: 100),
             backBtn.heightAnchor.constraint(equalToConstant: 50),
         ])
         saveBtn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            saveBtn.topAnchor.constraint(equalTo: checkPwdTextField.topAnchor, constant: 100),
+            saveBtn.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 600),
             saveBtn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 80),
             saveBtn.widthAnchor.constraint(equalToConstant: 100),
             saveBtn.heightAnchor.constraint(equalToConstant: 50),

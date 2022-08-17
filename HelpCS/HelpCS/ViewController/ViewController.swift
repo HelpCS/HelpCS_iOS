@@ -12,8 +12,6 @@ class ViewController: UIViewController {
         let loginView = UIView()
         return loginView
     }()
-    
-    var loginInfo = LoginInfo() // 인스턴스 생성
        
     // Logo Image
     lazy var logoImage: UIImageView = {
@@ -36,6 +34,7 @@ class ViewController: UIViewController {
         let mainText = UILabel()
         mainText.textColor = .darkGreen
         mainText.backgroundColor = .lightYellow
+        mainText.font = UIFont(name: "NotoSansKR-Bold", size: 20)
         mainText.font = UIFont.systemFont(ofSize: 30)
         mainText.text = "도와줘 개발!"
         mainText.sizeToFit()
@@ -43,7 +42,7 @@ class ViewController: UIViewController {
     }()
     
     // 아이디 입력창 -> 위치 변경 필요
-    @IBOutlet weak var mainIdTextField: UITextField! = {
+    lazy var mainIdTextField: UITextField = {
         let mainidText = UITextField()
         mainidText.textColor = .lightGreen
         mainidText.backgroundColor = .white
@@ -56,8 +55,8 @@ class ViewController: UIViewController {
         return mainidText
     }()
     
-    // 비밀번호 입력창 -> 위치 변경 필요
-    @IBOutlet weak var mainPwdTextField: UITextField! = {
+    // 비밀번호 입력창 -> primary로 해야됨.
+    lazy var mainPwdTextField: UITextField = {
         let mainpwdText = UITextField()
         mainpwdText.textColor = .lightGreen
         mainpwdText.backgroundColor = .white
@@ -84,7 +83,7 @@ class ViewController: UIViewController {
     }()
     
     // 로그인 버튼 -> UIImage 변경 필요
-    @IBOutlet weak var loginBtn: UIButton! = {
+    lazy var loginBtn: UIButton! = {
         let loginButton = UIButton()
         loginButton.setTitle("로그인", for: .normal)     // 버튼에 들어갈 글씨
         loginButton.backgroundColor = .newYellow       // 버튼 색상
@@ -96,13 +95,17 @@ class ViewController: UIViewController {
         return loginButton
     }()
     
+    var loginInfo = LoginInfo.init() // 인스턴스 생성
+    
     // 로그인 확인하기
-    func loginCheck(id: String, pwd: String) -> Bool {
-        for user in loginInfo.users {
+    @objc func loginCheck(id: String, pwd: String) -> Bool {
+        for user in [loginInfo] {
             if user.id == id && user.pwd == pwd {
+                print("로그인 성공")
                 return true // 로그인 성공
             }
         }
+        print("로그인 실패")
         return false
     }
     
@@ -153,12 +156,12 @@ class ViewController: UIViewController {
         // 키보드 내리기
         mainIdTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
         mainPwdTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
-        loginBtn.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
+        loginBtn.addTarget(self, action: #selector(loginCheck), for: UIControl.Event.editingDidEndOnExit)
         signUpBtn.addTarget(self, action: #selector(signUpBtnPressed), for: .touchUpInside)
         
         logoImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            logoImage.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 90),
+            logoImage.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 150),
             logoImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
             logoImage.widthAnchor.constraint(equalToConstant: 200),
             logoImage.heightAnchor.constraint(equalToConstant: 200),

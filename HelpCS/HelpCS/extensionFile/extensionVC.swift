@@ -44,37 +44,37 @@ extension ViewController: UITableViewDelegate {
         guard let id = mainIdTextField.text, !id.isEmpty else { return }
         guard let pwd = mainPwdTextField.text, !pwd.isEmpty else { return }
             
-        if userModel.isValidEmail(id: id){
-            if let removable = self.view.viewWithTag(100) {
-                removable.removeFromSuperview()
-            }
-        }
-        else {
-            shakeTextField(textField: mainIdTextField)
-            let idLabel = UILabel(frame: CGRect(x: 68, y: 350, width: 279, height: 45))
-            idLabel.text = "아이디 형식을 확인해 주세요"
-            idLabel.textColor = UIColor.red
-            idLabel.tag = 100
-                
-            self.view.addSubview(idLabel)
-        } // 이메일 형식 오류
-            
-        if userModel.isValidPassword(pwd: pwd){
-            if let removable = self.view.viewWithTag(101) {
-                removable.removeFromSuperview()
-            }
-        }
-        else{
-            shakeTextField(textField: mainIdTextField)
-            let pwdLabel = UILabel(frame: CGRect(x: 68, y: 435, width: 279, height: 45))
-            pwdLabel.text = "비밀번호 형식을 확인해 주세요"
-            pwdLabel.textColor = UIColor.red
-            pwdLabel.tag = 101
-                
-            self.view.addSubview(pwdLabel)
-        } // 비밀번호 형식 오류
-            
-        if userModel.isValidEmail(id: id) && userModel.isValidPassword(pwd: pwd) {
+//        if userModel.isValidEmail(id: id){
+//            if let removable = self.view.viewWithTag(100) {
+//                removable.removeFromSuperview()
+//            }
+//        }
+//        else {
+//            shakeTextField(textField: mainIdTextField)
+//            let idLabel = UILabel(frame: CGRect(x: 68, y: 350, width: 279, height: 45))
+//            idLabel.text = "아이디 형식을 확인해 주세요"
+//            idLabel.textColor = UIColor.red
+//            idLabel.tag = 100
+//
+//            self.view.addSubview(idLabel)
+//        } // 이메일 형식 오류
+//
+//        if userModel.isValidPassword(pwd: pwd){
+//            if let removable = self.view.viewWithTag(101) {
+//                removable.removeFromSuperview()
+//            }
+//        }
+//        else{
+//            shakeTextField(textField: mainIdTextField)
+//            let pwdLabel = UILabel(frame: CGRect(x: 68, y: 435, width: 279, height: 45))
+//            pwdLabel.text = "비밀번호 형식을 확인해 주세요"
+//            pwdLabel.textColor = UIColor.red
+//            pwdLabel.tag = 101
+//
+//            self.view.addSubview(pwdLabel)
+//        } // 비밀번호 형식 오류
+        
+        if (loginInfo.id == mainIdTextField.text) && (loginInfo.pwd == mainPwdTextField.text) {
             let loginSuccess: Bool = loginCheck(id: id, pwd: pwd)
             if loginSuccess {
                 print("로그인 성공")
@@ -132,6 +132,7 @@ extension SignUpVC: UITableViewDelegate {
         print("로그인 화면으로 돌아가기!")
         navigationController?.popViewController(animated: true)
     }
+    // 서버로 저장한 내용 보내기!
     @objc func saveAction() {
         print("저장하기!")
         // 저장하기 Action
