@@ -40,10 +40,6 @@ class SignUpVC: UIViewController {
     
     var userModel = SignUpInfo() // 인스턴스 생성
     
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var idTextField: UITextField!
-    @IBOutlet weak var pwdTextField: UITextField!
-    @IBOutlet weak var checkPwdTextField: UITextField!
     @IBOutlet weak var signUpBtn: UIButton!
     
     
@@ -163,6 +159,57 @@ class SignUpVC: UIViewController {
         }
     }
     
+    // 이름 입력창
+    @IBOutlet weak var nameTextField: UITextField! = {
+        let nameText = UITextField()
+        //        nameText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
+        nameText.placeholder = "이름"
+        nameText.layer.cornerRadius = 5
+        nameText.layer.borderWidth = 1
+        nameText.layer.borderColor = UIColor.darkGreen?.cgColor
+        nameText.borderStyle = .roundedRect
+        nameText.clearButtonMode = .whileEditing   // 입력하기 위해서 clear한 btn상태
+        return nameText
+    }()
+    
+    // 아이디 입력창
+    @IBOutlet weak var idTextField: UITextField! = {
+        let idText = UITextField()
+        //        idText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
+        idText.placeholder = "아이디"
+        idText.layer.cornerRadius = 5
+        idText.layer.borderWidth = 1
+        idText.layer.borderColor = UIColor.darkGreen?.cgColor
+        idText.borderStyle = .roundedRect
+        idText.clearButtonMode = .whileEditing   // 입력하기 위해서 clear한 btn상태
+        return idText
+    }()
+    
+    // 비밀번호 입력창
+    @IBOutlet weak var pwdTextField: UITextField! = {
+        let pwdText = UITextField()
+        //        pwText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
+        pwdText.placeholder = "비밀번호"
+        pwdText.layer.cornerRadius = 5
+        pwdText.layer.borderWidth = 1
+        pwdText.layer.borderColor = UIColor.darkGreen?.cgColor
+        pwdText.borderStyle = .roundedRect
+        pwdText.clearButtonMode = .whileEditing   // 입력하기 위해서 clear한 btn상태
+        return pwdText
+    }()
+    
+    // 비밀번호 확인 입력창
+    @IBOutlet weak var checkPwdTextField: UITextField! = {
+        let checkpwdText = UITextField()
+        //        checkpwText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
+        checkpwdText.placeholder = "비밀번호 확인"
+        checkpwdText.layer.cornerRadius = 5
+        checkpwdText.layer.borderWidth = 1
+        checkpwdText.layer.borderColor = UIColor.darkGreen?.cgColor
+        checkpwdText.borderStyle = .roundedRect
+        checkpwdText.clearButtonMode = .whileEditing   // 입력하기 위해서 clear한 btn상태
+        return checkpwdText
+    }()
     // 돌아가기 버튼
     lazy var backBtn: UIButton = {
         let backButton = UIButton()
@@ -177,7 +224,7 @@ class SignUpVC: UIViewController {
         backButton.addTarget(self, action: #selector(backBtnAction), for: .touchUpInside)
         return backButton
     }()
-
+    
     // 저장하기 버튼
     lazy var saveBtn: UIButton = {
         let saveButton = UIButton()
@@ -280,55 +327,4 @@ class SignUpVC: UIViewController {
     }
     
 }
-//    // 이름 입력창
-//    lazy var nameTextField: UITextField = {
-//        let nameText = UITextField()
-////        nameText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
-//        nameText.placeholder = "이름"
-//        nameText.layer.cornerRadius = 5
-//        nameText.layer.borderWidth = 1
-//        nameText.layer.borderColor = UIColor.darkGreen?.cgColor
-//        nameText.borderStyle = .roundedRect
-//        nameText.clearButtonMode = .whileEditing   // 입력하기 위해서 clear한 btn상태
-//        return nameText
-//    }()
-//
-//    // 아이디 입력창
-//    lazy var idTextField: UITextField = {
-//        let idText = UITextField()
-////        idText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
-//        idText.placeholder = "아이디"
-//        idText.layer.cornerRadius = 5
-//        idText.layer.borderWidth = 1
-//        idText.layer.borderColor = UIColor.darkGreen?.cgColor
-//        idText.borderStyle = .roundedRect
-//        idText.clearButtonMode = .whileEditing   // 입력하기 위해서 clear한 btn상태
-//        return idText
-//    }()
-//
-//    // 비밀번호 입력창
-//    lazy var pwTextField: UITextField = {
-//        let pwText = UITextField()
-////        pwText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
-//        pwText.placeholder = "비밀번호"
-//        pwText.layer.cornerRadius = 5
-//        pwText.layer.borderWidth = 1
-//        pwText.layer.borderColor = UIColor.darkGreen?.cgColor
-//        pwText.borderStyle = .roundedRect
-//        pwText.clearButtonMode = .whileEditing   // 입력하기 위해서 clear한 btn상태
-//        return pwText
-//    }()
-//
-//    // 비밀번호 확인 입력창
-//    lazy var checkPwTextField: UITextField = {
-//        let checkpwText = UITextField()
-////        checkpwText.frame = CGRect(x: 65, y: 60, width: 200, height: 30)
-//        checkpwText.placeholder = "비밀번호 확인"
-//        checkpwText.layer.cornerRadius = 5
-//        checkpwText.layer.borderWidth = 1
-//        checkpwText.layer.borderColor = UIColor.darkGreen?.cgColor
-//        checkpwText.borderStyle = .roundedRect
-//        checkpwText.clearButtonMode = .whileEditing   // 입력하기 위해서 clear한 btn상태
-//        return checkpwText
-//    }()
 

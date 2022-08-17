@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2AB98CDF28A79CF800A9C07C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CDE28A79CF800A9C07C /* MainView.swift */; };
 		2AB98CE728A7A41600A9C07C /* MyPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CE628A7A41600A9C07C /* MyPageVC.swift */; };
 		2AB98CE928A7A80000A9C07C /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CE828A7A80000A9C07C /* MainVC.swift */; };
 		2AB98CEB28A7A9C100A9C07C /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CEA28A7A9C100A9C07C /* SignUpVC.swift */; };
 		2AB98CED28A7DE6E00A9C07C /* extensionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CEC28A7DE6E00A9C07C /* extensionVC.swift */; };
-		2AB98CF028A7DE8F00A9C07C /* extensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CEF28A7DE8F00A9C07C /* extensionView.swift */; };
 		2AB98CF328AA2EFD00A9C07C /* LoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CF228AA2EFD00A9C07C /* LoginInfo.swift */; };
 		2AB98CF528AA2F4D00A9C07C /* SignUpInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CF428AA2F4D00A9C07C /* SignUpInfo.swift */; };
 		2AB98CF728AA31B400A9C07C /* QuestionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CF628AA31B400A9C07C /* QuestionInfo.swift */; };
@@ -29,12 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2AB98CDE28A79CF800A9C07C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2AB98CE628A7A41600A9C07C /* MyPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVC.swift; sourceTree = "<group>"; };
 		2AB98CE828A7A80000A9C07C /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		2AB98CEA28A7A9C100A9C07C /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		2AB98CEC28A7DE6E00A9C07C /* extensionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionVC.swift; sourceTree = "<group>"; };
-		2AB98CEF28A7DE8F00A9C07C /* extensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionView.swift; sourceTree = "<group>"; };
 		2AB98CF228AA2EFD00A9C07C /* LoginInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInfo.swift; sourceTree = "<group>"; };
 		2AB98CF428AA2F4D00A9C07C /* SignUpInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInfo.swift; sourceTree = "<group>"; };
 		2AB98CF628AA31B400A9C07C /* QuestionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionInfo.swift; sourceTree = "<group>"; };
@@ -74,19 +70,10 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		2AB98CDD28A79CDC00A9C07C /* View */ = {
-			isa = PBXGroup;
-			children = (
-				2AB98CDE28A79CF800A9C07C /* MainView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		2AB98CEE28A7DE7A00A9C07C /* extensionFile */ = {
 			isa = PBXGroup;
 			children = (
 				2AB98CEC28A7DE6E00A9C07C /* extensionVC.swift */,
-				2AB98CEF28A7DE8F00A9C07C /* extensionView.swift */,
 			);
 			path = extensionFile;
 			sourceTree = "<group>";
@@ -141,7 +128,6 @@
 				2AB98CFA28AA335700A9C07C /* API */,
 				2AB98CF128AA2EE900A9C07C /* DTO */,
 				2AB98CEE28A7DE7A00A9C07C /* extensionFile */,
-				2AB98CDD28A79CDC00A9C07C /* View */,
 				2AB98CCF28A7909C00A9C07C /* ViewController */,
 				2AE7E8CE289A134200B46581 /* AppDelegate.swift */,
 				2AE7E8D0289A134200B46581 /* SceneDelegate.swift */,
@@ -231,8 +217,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AB98CFC28AA336200A9C07C /* RestAPI.swift in Sources */,
-				2AB98CF028A7DE8F00A9C07C /* extensionView.swift in Sources */,
-				2AB98CDF28A79CF800A9C07C /* MainView.swift in Sources */,
 				2AB98CE928A7A80000A9C07C /* MainVC.swift in Sources */,
 				2AB98CF328AA2EFD00A9C07C /* LoginInfo.swift in Sources */,
 				2AB98CF528AA2F4D00A9C07C /* SignUpInfo.swift in Sources */,

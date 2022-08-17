@@ -14,10 +14,6 @@ class ViewController: UIViewController {
     }()
     
     var loginInfo = LoginInfo() // 인스턴스 생성
-        
-    @IBOutlet weak var idTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
        
     // Logo Image
     lazy var logoImage: UIImageView = {
@@ -47,7 +43,7 @@ class ViewController: UIViewController {
     }()
     
     // 아이디 입력창 -> 위치 변경 필요
-    lazy var mainIdTextField: UITextField = {
+    @IBOutlet weak var mainIdTextField: UITextField! = {
         let mainidText = UITextField()
         mainidText.textColor = .lightGreen
         mainidText.backgroundColor = .white
@@ -61,7 +57,7 @@ class ViewController: UIViewController {
     }()
     
     // 비밀번호 입력창 -> 위치 변경 필요
-    lazy var mainPwdTextField: UITextField = {
+    @IBOutlet weak var mainPwdTextField: UITextField! = {
         let mainpwdText = UITextField()
         mainpwdText.textColor = .lightGreen
         mainpwdText.backgroundColor = .white
@@ -88,7 +84,7 @@ class ViewController: UIViewController {
     }()
     
     // 로그인 버튼 -> UIImage 변경 필요
-    lazy var loginBtn: UIButton = {
+    @IBOutlet weak var loginBtn: UIButton! = {
         let loginButton = UIButton()
         loginButton.setTitle("로그인", for: .normal)     // 버튼에 들어갈 글씨
         loginButton.backgroundColor = .newYellow       // 버튼 색상
@@ -97,7 +93,6 @@ class ViewController: UIViewController {
         loginButton.layer.borderWidth = 1
         loginButton.layer.borderColor = UIColor.darkGreen?.cgColor
         loginButton.translatesAutoresizingMaskIntoConstraints = false
-        loginButton.addTarget(self, action: #selector(loginAction), for: .touchUpInside)
         return loginButton
     }()
     
