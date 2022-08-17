@@ -29,6 +29,13 @@ class SignUpVC: UIViewController {
         backBtn.addTarget(self, action: #selector(backBtnAction), for: .touchUpInside)
         saveBtn.addTarget(self, action: #selector(saveAction), for: .touchUpInside)
         
+        // 키보드 내리기
+        nameTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
+        idTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
+        pwdTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
+        checkPwdTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
+        signUpBtn.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
+        
     }
     
     var userModel = SignUpInfo() // 인스턴스 생성
@@ -56,7 +63,7 @@ class SignUpVC: UIViewController {
         guard let name = nameTextField.text, !name.isEmpty else { return }
         guard let id = idTextField.text, !id.isEmpty else { return }
         guard let pwd = pwdTextField.text, !pwd.isEmpty else { return }
-        guard let checkPwd = checkPwd.text, !checkPwd.isEmpty else { return }
+        guard let checkPwd = checkPwdTextField.text, !checkPwd.isEmpty else { return }
         
         
         if userModel.isValidEmail(id: id){
@@ -198,17 +205,6 @@ class SignUpVC: UIViewController {
         stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
         stackView.widthAnchor.constraint(equalToConstant: 350).isActive = true
         stackView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // 키보드 내리기
-        nameTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
-        idTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
-        pwdTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
-        checkPwdTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
-        signUpBtn.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
     }
     
     override func loadView() {

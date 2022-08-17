@@ -38,6 +38,64 @@ extension ViewController: UITableViewDelegate {
         signUpVC.navigationController!.navigationBar.isTranslucent = false
         signUpVC.navigationController!.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
     }
+    
+    @IBAction func didTapLoginButton(_ sender: UIButton) {
+        // 옵셔널 바인딩 & 예외 처리 : Textfield가 빈문자열이 아니고, nil이 아닐 때
+        guard let id = mainIdTextField.text, !id.isEmpty else { return }
+        guard let pwd = mainPwdTextField.text, !pwd.isEmpty else { return }
+            
+        if userModel.isValidEmail(id: id){
+            if let removable = self.view.viewWithTag(100) {
+                removable.removeFromSuperview()
+            }
+        }
+        else {
+            shakeTextField(textField: mainIdTextField)
+            let idLabel = UILabel(frame: CGRect(x: 68, y: 350, width: 279, height: 45))
+            idLabel.text = "아이디 형식을 확인해 주세요"
+            idLabel.textColor = UIColor.red
+            idLabel.tag = 100
+                
+            self.view.addSubview(idLabel)
+        } // 이메일 형식 오류
+            
+        if userModel.isValidPassword(pwd: pwd){
+            if let removable = self.view.viewWithTag(101) {
+                removable.removeFromSuperview()
+            }
+        }
+        else{
+            shakeTextField(textField: mainIdTextField)
+            let pwdLabel = UILabel(frame: CGRect(x: 68, y: 435, width: 279, height: 45))
+            pwdLabel.text = "비밀번호 형식을 확인해 주세요"
+            pwdLabel.textColor = UIColor.red
+            pwdLabel.tag = 101
+                
+            self.view.addSubview(pwdLabel)
+        } // 비밀번호 형식 오류
+            
+        if userModel.isValidEmail(id: id) && userModel.isValidPassword(pwd: pwd) {
+            let loginSuccess: Bool = loginCheck(id: id, pwd: pwd)
+            if loginSuccess {
+                print("로그인 성공")
+                if let removable = self.view.viewWithTag(102) {
+                    removable.removeFromSuperview()
+                }
+                self.performSegue(withIdentifier: "showMain", sender: self)
+            }
+            else {
+                print("로그인 실패")
+                shakeTextField(textField: mainIdTextField)
+                shakeTextField(textField: mainPwdTextField)
+                let loginFailLabel = UILabel(frame: CGRect(x: 68, y: 510, width: 279, height: 45))
+                loginFailLabel.text = "아이디나 비밀번호가 다릅니다."
+                loginFailLabel.textColor = UIColor.red
+                loginFailLabel.tag = 102
+                    
+                self.view.addSubview(loginFailLabel)
+            }
+        }
+    } // end of didTapLoginButton
 
 }
 extension MainVC: UITableViewDelegate {
@@ -67,12 +125,13 @@ extension SignUpVC: UITableViewDelegate {
     func validateForm() {
         guard let nameText = nameTextField.text, !nameText.isEmpty else { return }
         guard let idText = idTextField.text, !idText.isEmpty else { return }
-        guard let pwText = pwTextField.text, !pwText.isEmpty else { return }
-        guard let checkPwText = checkPwTextField.text, !checkPwText.isEmpty else { return }
+        guard let pwdText = pwdTextField.text, !pwdText.isEmpty else { return }
+        guard let checkPwdText = checkPwdTextField.text, !checkPwdText.isEmpty else { return }
         
-        startSigningUp(name: nameText, id: idText, pw: pwText)
+        startSigningUp(name: nameText, id: idText, pwd: pwdText)
     }
-    func startSigningUp(name: String, id: String, pw: String) {
-        print("Please call any Sign up api for registration: ", name, id, pw)
+    
+    func startSigningUp(name: String, id: String, pwd: String) {
+        print("Please call any Sign up api for registration: ", name, id, pwd)
     }
 }

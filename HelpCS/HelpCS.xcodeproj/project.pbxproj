@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2AB98CDF28A79CF800A9C07C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CDE28A79CF800A9C07C /* MainView.swift */; };
-		2AB98CE128A79D3E00A9C07C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CE028A79D3E00A9C07C /* LoginView.swift */; };
 		2AB98CE728A7A41600A9C07C /* MyPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CE628A7A41600A9C07C /* MyPageVC.swift */; };
 		2AB98CE928A7A80000A9C07C /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CE828A7A80000A9C07C /* MainVC.swift */; };
 		2AB98CEB28A7A9C100A9C07C /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB98CEA28A7A9C100A9C07C /* SignUpVC.swift */; };
@@ -31,7 +30,6 @@
 
 /* Begin PBXFileReference section */
 		2AB98CDE28A79CF800A9C07C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		2AB98CE028A79D3E00A9C07C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2AB98CE628A7A41600A9C07C /* MyPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVC.swift; sourceTree = "<group>"; };
 		2AB98CE828A7A80000A9C07C /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		2AB98CEA28A7A9C100A9C07C /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
@@ -79,7 +77,6 @@
 		2AB98CDD28A79CDC00A9C07C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2AB98CE028A79D3E00A9C07C /* LoginView.swift */,
 				2AB98CDE28A79CF800A9C07C /* MainView.swift */,
 			);
 			path = View;
@@ -241,7 +238,6 @@
 				2AB98CF528AA2F4D00A9C07C /* SignUpInfo.swift in Sources */,
 				2AB98CED28A7DE6E00A9C07C /* extensionVC.swift in Sources */,
 				2AB98CF928AA320B00A9C07C /* LoginSuccess.swift in Sources */,
-				2AB98CE128A79D3E00A9C07C /* LoginView.swift in Sources */,
 				2AB98CF728AA31B400A9C07C /* QuestionInfo.swift in Sources */,
 				2AB98CEB28A7A9C100A9C07C /* SignUpVC.swift in Sources */,
 				2AE7E8D3289A134200B46581 /* ViewController.swift in Sources */,

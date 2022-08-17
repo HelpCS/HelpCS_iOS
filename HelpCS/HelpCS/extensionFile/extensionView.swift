@@ -36,23 +36,3 @@ extension MainView {
     }
     
 }
-
-extension LoginView {
-    @objc func signUpAction(sender: UITapGestureRecognizer) {
-        // 회원가입 action -> View 이동
-        createSignUp()
-    }
-    
-    @objc func createSignUp() {
-        print("회원가입 버튼 클릭")
-        // navigation
-    }
-    
-    @objc func confirmAction() {
-        print("로그인 화면으로 돌아가기!")
-        // navigation
-    }
-    @objc func loginAction(sender: UITapGestureRecognizer) {
-        // 로그인 action -> 로그인 후 View 이동
-    }
-}
