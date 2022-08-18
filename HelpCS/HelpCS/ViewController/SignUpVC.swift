@@ -40,7 +40,6 @@ class SignUpVC: UIViewController {
     
     var userModel = SignUpInfo.init() // 인스턴스 생성
     
-    
     // 회원 확인 method
     func isUser(id: String) -> Bool {
         for user in [userModel] {

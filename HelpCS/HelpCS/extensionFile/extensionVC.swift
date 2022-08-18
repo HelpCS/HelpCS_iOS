@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 extension UIColor {
     class var lightGreen: UIColor? { return UIColor(named: "lightGreen")}
@@ -74,27 +75,27 @@ extension ViewController: UITableViewDelegate {
 //            self.view.addSubview(pwdLabel)
 //        } // 비밀번호 형식 오류
         
-        if (loginInfo.id == mainIdTextField.text) && (loginInfo.pwd == mainPwdTextField.text) {
-            let loginSuccess: Bool = loginCheck(id: id, pwd: pwd)
-            if loginSuccess {
-                print("로그인 성공")
-                if let removable = self.view.viewWithTag(102) {
-                    removable.removeFromSuperview()
-                }
-                self.performSegue(withIdentifier: "showMain", sender: self)
-            }
-            else {
-                print("로그인 실패")
-                shakeTextField(textField: mainIdTextField)
-                shakeTextField(textField: mainPwdTextField)
-                let loginFailLabel = UILabel(frame: CGRect(x: 68, y: 510, width: 279, height: 45))
-                loginFailLabel.text = "아이디나 비밀번호가 다릅니다."
-                loginFailLabel.textColor = UIColor.red
-                loginFailLabel.tag = 102
-                    
-                self.view.addSubview(loginFailLabel)
-            }
-        }
+//        if (loginInfo.id == mainIdTextField.text) && (loginInfo.pwd == mainPwdTextField.text) {
+//            let loginSuccess: Bool = loginCheck(id: loginInfo.id, pwd: loginInfo.pwd)
+//            if loginSuccess {
+//                print("로그인 성공")
+//                if let removable = self.view.viewWithTag(102) {
+//                    removable.removeFromSuperview()
+//                }
+//                self.performSegue(withIdentifier: "showMain", sender: self)
+//            }
+//            else {
+//                print("로그인 실패")
+//                shakeTextField(textField: mainIdTextField)
+//                shakeTextField(textField: mainPwdTextField)
+//                let loginFailLabel = UILabel(frame: CGRect(x: 68, y: 510, width: 279, height: 45))
+//                loginFailLabel.text = "아이디나 비밀번호가 다릅니다."
+//                loginFailLabel.textColor = UIColor.red
+//                loginFailLabel.tag = 102
+//                    
+//                self.view.addSubview(loginFailLabel)
+//            }
+//        }
     } // end of didTapLoginButton
 
 }
@@ -108,15 +109,27 @@ extension MainVC: UITableViewDelegate {
     @objc func oAction(sender: UITapGestureRecognizer) {
         print("O click")
         
+        if (question.answer == "O") {
+            failView.play()
+        } else {
+            correctView.play()
+        }
     }
     // 정답 확인하기
     @objc func xAction(sender: UITapGestureRecognizer) {
         print("X click")
+        
+        if (question.answer == "X") {
+            correctView.play()
+        } else {
+            failView.play()
+        }
     }
     
     // 관련 링크로 연결
     @objc func connectionAction(sender: AnyObject) {
         print("더 알아보기 링크로 연결!")
+//        "\(question.questionUrl)"
         if let url = NSURL(string: "https://www.google.com"){
             if #available(iOS 10, *){
                 UIApplication.shared.open(url as URL)

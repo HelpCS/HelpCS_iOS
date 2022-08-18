@@ -11,13 +11,23 @@ import Lottie
 class MainVC: UIViewController {
     let mainView: UIView = {
         let mainView = UIView()
+        mainView.backgroundColor = .lightYellow
         return mainView
     }()
     
-    let animationView: UIView = {
-        let animationView = AnimationView(name: "104751-correct")
+    let correctView: AnimationView = {
+        let animationView = AnimationView(name: "correct")
         animationView.contentMode = .scaleAspectFit
-        animationView.play()
+        animationView.loopMode = .playOnce
+        animationView.animationSpeed = 1
+        return animationView
+    }()
+    
+    let failView: AnimationView = {
+        let animationView = AnimationView(name: "fail")
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .playOnce
+        animationView.animationSpeed = 1
         return animationView
     }()
     
@@ -43,6 +53,7 @@ class MainVC: UIViewController {
     
     @objc func logOutAction(sender: UITapGestureRecognizer) {
         let vc = ViewController()
+        // 값을 없애는 작업 필요
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -51,10 +62,13 @@ class MainVC: UIViewController {
 //        self.navigationController?.pushViewController(vc, animated: true)
 //    }
     
+    var personalData = LoginInfo()
+    var question = QuestionInfo()
+    
     // category 버튼
     lazy var categoryBtn: UIButton = {
         let categoryBtn = UIButton()
-        categoryBtn.setTitle("user 의 "+"category 문제", for: .normal)     // 버튼에 들어갈 글씨
+        categoryBtn.setTitle("\(personalData.id) 의 \(question.questionTitle) 문제", for: .normal)     // 버튼에 들어갈 글씨
         categoryBtn.setTitleColor(.darkGreen, for: .normal) // 버튼 글씨 색상
         categoryBtn.backgroundColor = .newYellow     // 버튼 색상
         categoryBtn.layer.cornerRadius = 5
@@ -68,7 +82,7 @@ class MainVC: UIViewController {
     // 기능추가 필요
     lazy var questionText: UITextView = {
         let questionText = UITextView()
-//        questionText.text = URL(string: "문제url")
+//        questionText.text = URL(string: "(\(question.question))")
         questionText.text = "문제"
         questionText.textColor = .darkGreen
         questionText.textAlignment = .center
@@ -138,12 +152,13 @@ class MainVC: UIViewController {
         self.view.addSubview(titleView)
         self.view.addSubview(myPageBtn)
         self.view.addSubview(label)
-        self.view.addSubview(oBtn)
-        self.view.addSubview(xBtn)
-        self.view.addSubview(animationView)
         self.view.addSubview(questionText)
         self.view.addSubview(categoryBtn)
         self.view.addSubview(linkConnectionBtn)
+        self.view.addSubview(correctView)
+        self.view.addSubview(failView)
+        self.view.addSubview(oBtn)
+        self.view.addSubview(xBtn)
         
         titleView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -164,28 +179,23 @@ class MainVC: UIViewController {
             myPageBtn.heightAnchor.constraint(equalToConstant: 40),
             myPageBtn.widthAnchor.constraint(equalToConstant: 40)
         ])
-        oBtn.translatesAutoresizingMaskIntoConstraints = false
+        correctView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            oBtn.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 510),
-            oBtn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -90),
-            oBtn.widthAnchor.constraint(equalToConstant: 150),
-            oBtn.heightAnchor.constraint(equalToConstant: 70),
+            correctView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
+            correctView.topAnchor.constraint(equalTo: categoryBtn.bottomAnchor, constant: 30),
+            correctView.widthAnchor.constraint(equalToConstant: 350),
+            correctView.heightAnchor.constraint(equalToConstant: 350)
         ])
-        xBtn.translatesAutoresizingMaskIntoConstraints = false
+        failView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            xBtn.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 510),
-            xBtn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 90),
-            xBtn.widthAnchor.constraint(equalToConstant: 150),
-            xBtn.heightAnchor.constraint(equalToConstant: 70),
-        ])
-        animationView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            animationView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            animationView.heightAnchor.constraint(equalTo: view.heightAnchor)
+            failView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
+            failView.topAnchor.constraint(equalTo: categoryBtn.bottomAnchor, constant: 30),
+            failView.widthAnchor.constraint(equalToConstant: 350),
+            failView.heightAnchor.constraint(equalToConstant: 350)
         ])
         categoryBtn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            categoryBtn.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 80),
+            categoryBtn.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 130),
             categoryBtn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
             categoryBtn.widthAnchor.constraint(equalToConstant: 250),
             categoryBtn.heightAnchor.constraint(equalToConstant: 30),
@@ -197,9 +207,23 @@ class MainVC: UIViewController {
             questionText.widthAnchor.constraint(equalToConstant: 350),
             questionText.heightAnchor.constraint(equalToConstant: 350),
         ])
+        oBtn.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            oBtn.topAnchor.constraint(equalTo: questionText.bottomAnchor, constant: 40),
+            oBtn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -90),
+            oBtn.widthAnchor.constraint(equalToConstant: 150),
+            oBtn.heightAnchor.constraint(equalToConstant: 70),
+        ])
+        xBtn.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            xBtn.topAnchor.constraint(equalTo: questionText.bottomAnchor, constant: 40),
+            xBtn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 90),
+            xBtn.widthAnchor.constraint(equalToConstant: 150),
+            xBtn.heightAnchor.constraint(equalToConstant: 70),
+        ])
         linkConnectionBtn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            linkConnectionBtn.topAnchor.constraint(equalTo: categoryBtn.bottomAnchor, constant: 470),
+            linkConnectionBtn.topAnchor.constraint(equalTo: oBtn.bottomAnchor, constant: 40),
             linkConnectionBtn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
             linkConnectionBtn.widthAnchor.constraint(equalToConstant: 350),
             linkConnectionBtn.heightAnchor.constraint(equalToConstant: 50),

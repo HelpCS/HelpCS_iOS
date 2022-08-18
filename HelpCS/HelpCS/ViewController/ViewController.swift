@@ -95,18 +95,42 @@ class ViewController: UIViewController {
         return loginButton
     }()
     
-    var loginInfo = LoginInfo.init() // 인스턴스 생성
+    var loginInfo = LoginInfo() // 인스턴스 생성
+    
+    func loginAPI(id: String, pwd: String) -> Bool {
+        if loginInfo.id == id && loginInfo.pwd == pwd {
+            print("로그인 성공")
+            return true // 로그인 성공
+        }
+        else {
+            print("로그인 실패")
+            return false
+        }
+    }
     
     // 로그인 확인하기
-    @objc func loginCheck(id: String, pwd: String) -> Bool {
-        for user in [loginInfo] {
-            if user.id == id && user.pwd == pwd {
-                print("로그인 성공")
-                return true // 로그인 성공
-            }
-        }
-        print("로그인 실패")
-        return false
+    @objc func loginCheck() {
+        print("로그인 버튼 클릭")
+        let nextView = MainVC()
+        self.navigationController?.pushViewController(nextView, animated: true)
+        
+//        if (loginAPI(id: mainIdTextField.text ?? "id", pwd: mainPwdTextField.text ?? "pwd") == true) {
+//            let mainVC = MainVC()
+//            navigationController?.pushViewController(mainVC, animated: true)
+//            mainVC.navigationController!.navigationBar.isTranslucent = false
+//            mainVC.navigationController!.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
+//        } else {
+//            print("로그인 실패")
+//            shakeTextField(textField: mainIdTextField)
+//            shakeTextField(textField: mainPwdTextField)
+//
+//            let loginFailLabel = UILabel(frame: CGRect(x: 68, y: 510, width: 279, height: 45))
+//            loginFailLabel.text = "아이디나 비밀번호가 다릅니다."
+//            loginFailLabel.textColor = UIColor.red
+//            loginFailLabel.tag = 102
+//
+//            self.view.addSubview(loginFailLabel)
+//        }
     }
     
     // TextField 흔들기 애니메이션
@@ -156,7 +180,7 @@ class ViewController: UIViewController {
         // 키보드 내리기
         mainIdTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
         mainPwdTextField.addTarget(self, action: #selector(didEndOnExit), for: UIControl.Event.editingDidEndOnExit)
-        loginBtn.addTarget(self, action: #selector(loginCheck), for: UIControl.Event.editingDidEndOnExit)
+        loginBtn.addTarget(self, action: #selector(loginCheck), for: .touchUpInside)
         signUpBtn.addTarget(self, action: #selector(signUpBtnPressed), for: .touchUpInside)
         
         logoImage.translatesAutoresizingMaskIntoConstraints = false
